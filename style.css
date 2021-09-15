@@ -1,0 +1,235 @@
+/* IMPORTS */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+/* GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, main {
+    height: 100vh;
+    font-family: 'IBM Plex Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 11vw;
+}
+
+/* PAGE BORDER */
+
+.websiteFrame {
+    position: fixed;
+    background-color: #FFF;
+}
+
+#websiteFrameTop {
+    top: 1.5em;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    animation: fromLeft .2s ease-in-out 0s 1 normal forwards;
+}
+
+#websiteFrameRight {
+    top: 0;
+    bottom: 0;
+    right: 1.5em;
+    width: 1px;
+    visibility: hidden;
+    animation: fromTop .2s ease-in-out .2s 1 normal forwards;
+}
+
+#websiteFrameBottom {
+    bottom: 1.5em;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    visibility: hidden;
+    animation: fromRight .2s ease-in-out .4s 1 normal forwards;
+}
+
+#websiteFrameLeft {
+    top: 0;
+    bottom: 0;
+    left: 1.5em;
+    width: 1px;
+    visibility: hidden;
+    animation: fromBot .2s ease-in-out .6s 1 normal forwards;
+}
+
+@keyframes fromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fromRight {
+    from {
+        visibility: visible;
+        transform: translateX(100%);
+    }
+    to {
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fromTop {
+    from {
+        visibility: visible;
+        transform: translateY(-100%);
+    }
+    to {
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fromBot {
+    from {
+        visibility: visible;
+        transform: translateY(100%);
+    }
+    to {
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@keyframes appear{
+    from {
+        visibility: hidden;
+    }
+    to {
+        visibility: visible;
+    }
+}
+
+/* NAVIGATION */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    right: 2em;
+    background-color: #232323;
+    visibility: hidden;
+    animation: fromTop .5s ease-in-out .8s 1 normal forwards;
+}
+
+nav, nav ul {
+    align-items: center;
+}
+
+li {
+    list-style-type: none;
+}
+
+nav li {
+    margin-left: 1rem;
+    display: inline-block;
+    transition: opacity .3s;
+}
+
+nav ul:hover li:not(:hover) {
+    opacity: .5;
+}
+
+nav li a {
+    color: #faf8ff;
+}
+
+a {
+    color: #232323;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* HOVER ANIMATION */
+
+/* 
+    display: inline-block | on text to prevent underline from spanning entire parent element
+    transform: scaleX(0) | to hide the underline
+    transform: scaleX(1) via :hover | to display the pseudo-element
+*/
+
+nav li a::before, nav li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform .25s ease-out;
+}
+
+nav li a::after {
+    background-color: #ff8847;
+}
+
+nav li a::before {
+    background-color: #7ab5b6;
+    transition-delay: .25s;
+}
+
+nav li a:hover::before, nav li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* CONTENT */
+
+.content {
+    height: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    color: #232323;
+}
+
+#me {
+    background-color: #232323;
+    justify-content: flex-end;
+}
+
+#me h1 {
+    text-align: right;
+    color: #faf8ff;
+    visibility: hidden;
+    animation: fromTop .5s ease-in-out .8s 1 normal forwards;
+}
+
+.project {
+    border-bottom: 1px solid #232323;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2em;
+    transition: all .5s;
+}
+
+.project:hover {
+    background-color: #232323;
+    border-bottom: 1px solid #faf8ff;
+    color: #faf8ff;
+    padding-left: 2em;
+}
+
+.project li {
+    margin: 1em 0;
+}
