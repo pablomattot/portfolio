@@ -137,6 +137,7 @@ p {
 
 .project-details {
     margin-right: 2vw;
+    width: 100px;
 }
 
 .project-details p {
